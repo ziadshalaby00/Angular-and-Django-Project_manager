@@ -1,0 +1,162 @@
+<div class="container flex flex-col m-auto min-h-full py-8">
+ 
+  <!-- serach and filtering projects -->
+  <div class="relative mx-2">
+    <input type="search" name="search" [(ngModel)]="searchValue"
+     id="search" placeholder="Search for project..."
+      class="block w-full rounded-md bg-white px-3 rounded-r-md
+      py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-500 sm:text-sm/6">
+      
+      <span (click)="startSearch()"
+      class="absolute top-[50%] text-gray-50 rounded-r-md
+      translate-y-[-50%] right-0 bg-blue-600 flex items-center justify-center
+      hover:bg-blue-500 h-full hover:cursor-pointer w-1/10 min-w-12">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </span>
+  </div>
+
+  <div class="flex items-center flex-wrap gap-4 mt-3 mx-2">
+
+    @for(item of filters; track item.count) {
+
+      <button [ngClass]="{
+          'bg-sky-500 text-gray-50': item.filter === activeFilter,
+          'text-sky-500 hover:bg-sky-200 hover:bg-opacity-10 hover:text-sky-600': item.filter !== activeFilter
+        }"
+        class="inline-block rounded border-2 border-sky-500 
+        hover:cursor-pointer px-4 py-2 text-xs font-medium uppercase leading-normal"
+        (click)="filterData(item.filter)">{{item.filter}} Projects 
+
+        <span class="inline-block whitespace-nowrap rounded-sm
+        bg-blue-100 p-1.5 ml-1.5
+        text-center align-baseline text-sm font-bold 
+        leading-none text-blue-700">
+          {{item.count}}
+        </span>
+
+      </button>
+    }
+
+  </div>
+
+  @for(item of $data; track item.id) {
+      <!-- Card -->
+      <div class="rounded-lg mx-2 bg-white shadow-lg dark:bg-neutral-700mx-4 mt-5">
+        
+          <!-- Card body -->
+          <div class="relative p-6 max-h-52 overflow-hidden bg-blue-100">
+        
+            <!-- Title -->
+              <div class="flex justify-between items-center gap-2 flex-wrap mb-2 ">
+                  <h5 class="text-xl font-bold tracking-wide text-neutral-800 dark:text-neutral-50">
+                    {{item.title}}
+                  </h5>
+                  
+                  <div class="flex items-center justify-center gap-3">
+                    @if(item.author.username === "ziad") {
+                      <div class="relative inline-block text-left">
+                        <div>
+                          <button type="button" (click)="togglePSetting(item.id)"
+                            class="flex items-center rounded-md bg-white px-3 py-2 text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:text-gray-600
+                            hover:cursor-pointer" id="menu-button" aria-expanded="true" aria-haspopup="true">
+                            <i class="fa-solid fa-gear text-xl"></i>
+                          </button>
+                        </div>
+
+                        <!--
+                          Dropdown menu, show/hide based on menu state.
+                      
+                          Entering: "transition ease-out duration-100"
+                            From: "transform opacity-0 scale-95"
+                            To: "transform opacity-100 scale-100"
+                          Leaving: "transition ease-in duration-75"
+                            From: "transform opacity-100 scale-100"
+                            To: "transform opacity-0 scale-95"
+                        -->
+                        <div [ngClass]="{'hidden': PSetting != item.id}"
+                        class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white ring-1 shadow-lg ring-black/5 focus:outline-hidden" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                          <div class="py-1" role="none">
+                            <!-- Active: "bg-gray-100 text-gray-900 outline-hidden", Not Active: "text-gray-700" -->
+                            <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-200
+                             text-gray-700" role="menuitem" tabindex="-1" id="menu-item-0">
+                              Edit Project <i class="ml-1 fa-solid fa-pen-to-square"></i>
+                            </a>
+
+                            <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-200
+                             text-red-600" role="menuitem" tabindex="-1" id="menu-item-1">
+                             Delete Project <i class="ml-1 fa-solid fa-trash"></i>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    }
+  
+                    <span [ngClass]="{
+                      'text-green-700 ring-1 ring-green-600/20 bg-green-50': item.status === 'Done',
+                      'text-yellow-800 ring-1 ring-yellow-600/20 bg-yellow-50': item.status !== 'Done'
+                    }"
+                    class="inline-flex items-center rounded-md px-2.5 py-1.5 text-base font-medium ring-inset">{{item.status}}</span>
+                  </div>
+
+              </div>
+        
+            <!-- Text -->
+            <pre class="mb-2 text-base text-neutral-700 dark:text-neutral-300">
+              {{item.description}}
+            </pre>
+        
+            <!-- view project -->
+            <div class="h-3/8 flex justify-center items-center
+              bg-gradient-to-t from-gray-300 to-transparent
+              absolute bottom-0 left-0 w-full">
+  
+              <a routerLink="/ProjectInfo/{{item.id}}" class="text-white font-medium px-4 hover:bg-gray-500
+              py-1 rounded-xl bg-gray-600">View Project</a>
+  
+            </div>
+
+          </div>
+        
+          <!-- Card footer -->
+          <div class="border-t-2 border-neutral-100 px-6 py-4 dark:border-neutral-500">
+            <h5 class="flex items-center gap-2 flex-wrap justify-between text-neutral-500 dark:text-neutral-300">
+  
+              <div class="flex gap-2 justify-center items-center">
+                  <img class="size-10 text-md rounded-full" src="{{item.author.img}}" alt="">
+                  <p>{{item.author.username}}</p>
+              </div>
+  
+              <div class=" text-xs">
+                  {{item.created_at | date}}
+              </div>
+  
+            </h5>
+          </div>
+        
+        </div>
+        <!-- Card -->
+  }@empty {
+    <div class="flex-1 flex items-center">
+      <div class="text-center mx-auto px-4 lg:px-8 max-w-2xl py-14 sm:py-48 lg:py-28">
+    
+        <h1 class="text-3xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl">
+          No projects
+        </h1>
+    
+        <div class="mt-10 flex items-center justify-center gap-x-6">
+          <a routerLink="/CreateProject"
+            class="rounded-md bg-emerald-500 px-3.5 text-neutral-50
+            py-2.5 text-sm font-semiboldshadow-xs hover:bg-emerald-600
+            focus-visible:outline-2 hover:cursor-pointer
+            focus-visible:outline-offset-2  border border-emerald-600
+            flex items-center justify-center gap-2
+          focus-visible:outline-emerald-600">
+            Create Project <i class="fa-solid fa-square-plus"></i> 
+          </a>
+        </div>
+    
+      </div>
+    </div>
+  }
+</div>
