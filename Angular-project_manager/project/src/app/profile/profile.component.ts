@@ -1,12 +1,31 @@
 import { Component } from '@angular/core';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
+  PhotoSingup: any = null;
+  EditForm: boolean = false;
 
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.PhotoSingup = e.target?.result;
+        console.log(this.PhotoSingup)
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  opendEditForm() {
+    this.EditForm = !this.EditForm
+  }
 }

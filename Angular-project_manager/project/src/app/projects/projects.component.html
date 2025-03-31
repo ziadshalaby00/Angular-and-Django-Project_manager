@@ -1,9 +1,9 @@
-<div class="container flex flex-col m-auto min-h-full py-8">
+<div class="container px-2 flex flex-col m-auto min-h-full py-8">
  
   <!-- serach and filtering projects -->
-  <div class="relative mx-2">
+  <div class="relative ">
     <input type="search" name="search" [(ngModel)]="searchValue"
-     id="search" placeholder="Search for project..."
+     id="search" placeholder="Search for a project by title..."
       class="block w-full rounded-md bg-white px-3 rounded-r-md
       py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-500 sm:text-sm/6">
       
@@ -16,7 +16,7 @@
       </span>
   </div>
 
-  <div class="flex items-center flex-wrap gap-4 mt-3 mx-2">
+  <div class="flex items-center flex-wrap gap-4 mt-3 ">
 
     @for(item of filters; track item.count) {
 
@@ -39,10 +39,12 @@
     }
 
   </div>
+  <!-- serach and filtering projects -->
+
 
   @for(item of $data; track item.id) {
       <!-- Card -->
-      <div class="rounded-lg mx-2 bg-white shadow-lg dark:bg-neutral-700mx-4 mt-5">
+      <div class="rounded-lg bg-white shadow-lg dark:bg-neutral-700mx-4 mt-5">
         
           <!-- Card body -->
           <div class="relative p-6 max-h-52 overflow-hidden bg-blue-100">
@@ -78,12 +80,12 @@
                         class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white ring-1 shadow-lg ring-black/5 focus:outline-hidden" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
                           <div class="py-1" role="none">
                             <!-- Active: "bg-gray-100 text-gray-900 outline-hidden", Not Active: "text-gray-700" -->
-                            <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-200
+                            <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100
                              text-gray-700" role="menuitem" tabindex="-1" id="menu-item-0">
                               Edit Project <i class="ml-1 fa-solid fa-pen-to-square"></i>
                             </a>
 
-                            <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-200
+                            <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100
                              text-red-600" role="menuitem" tabindex="-1" id="menu-item-1">
                              Delete Project <i class="ml-1 fa-solid fa-trash"></i>
                             </a>
@@ -124,7 +126,7 @@
   
               <div class="flex gap-2 justify-center items-center">
                   <img class="size-10 text-md rounded-full" src="{{item.author.img}}" alt="">
-                  <p>{{item.author.username}}</p>
+                  <p class="text-gray-700">{{item.author.username}}</p>
               </div>
   
               <div class=" text-xs">
@@ -134,9 +136,10 @@
             </h5>
           </div>
         
-        </div>
-        <!-- Card -->
+      </div>
+      <!-- Card -->
   }@empty {
+    <!-- empty -->
     <div class="flex-1 flex items-center">
       <div class="text-center mx-auto px-4 lg:px-8 max-w-2xl py-14 sm:py-48 lg:py-28">
     
@@ -146,17 +149,60 @@
     
         <div class="mt-10 flex items-center justify-center gap-x-6">
           <a routerLink="/CreateProject"
-            class="rounded-md bg-emerald-500 px-3.5 text-neutral-50
-            py-2.5 text-sm font-semiboldshadow-xs hover:bg-emerald-600
+            class="rounded-md bg-teal-500 px-3.5 text-neutral-50
+            py-2.5 text-sm font-semiboldshadow-xs hover:bg-teal-600
             focus-visible:outline-2 hover:cursor-pointer
-            focus-visible:outline-offset-2  border border-emerald-600
+            focus-visible:outline-offset-2  border border-teal-600
             flex items-center justify-center gap-2
-          focus-visible:outline-emerald-600">
+          focus-visible:outline-teal-600">
             Create Project <i class="fa-solid fa-square-plus"></i> 
           </a>
         </div>
     
       </div>
     </div>
+    <!-- empty -->
   }
+
+  <!-- pagination -->
+  <div class="flex  gap-2 items-center justify-between border-t mt-8 border-gray-200 bg-white px-4 py-3 sm:px-6">
+      <div>
+        <p class="text-sm text-gray-700">
+          Showing
+          <span class="font-medium">1</span>
+          to
+          <span class="font-medium">{{$data.length / 5}}</span>
+          of
+          <span class="font-medium">{{$data.length}}</span>
+          results
+        </p>
+      </div>
+      
+      <div>
+        <nav class="isolate inline-flex -space-x-px rounded-md shadow-xs" aria-label="Pagination">
+
+          <button class="hover:cursor-pointer relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
+            <span class="sr-only">Previous</span>
+            <svg class="size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+              <path fill-rule="evenodd" d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd" />
+            </svg>
+          </button>
+          <!-- Current: "z-10 bg-indigo-600 text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" -->
+    
+          <button class="hover:cursor-pointer relative hidden items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex">2</button>
+          <button class="hover:cursor-pointer relative z-10 inline-flex items-center bg-indigo-600 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">3</button>
+          <button class="hover:cursor-pointer relative hidden items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex">4</button>
+          
+          <button class="hover:cursor-pointer relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
+            <span class="sr-only">Next</span>
+            <svg class="size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+              <path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+            </svg>
+          </button>
+
+        </nav>
+      </div>
+  </div>
+  <!-- pagination -->
+
 </div>

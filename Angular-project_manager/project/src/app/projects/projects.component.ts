@@ -17,7 +17,7 @@ export class ProjectsComponent {
   $data: any = []
 
   setVirtualData() {
-    for(let data=0; data < 20; data++) {
+    for(let data=0; data < 9; data++) {
       let des: any = ''
       for(let i=0; i<8; i++) {
         des += `
@@ -101,4 +101,6 @@ export class ProjectsComponent {
     }
     this.PSetting = id
   }
+
+
 }
