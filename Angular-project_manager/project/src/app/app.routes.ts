@@ -9,11 +9,26 @@ import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { CreateProjectComponent } from './create-project/create-project.component';
 import { ProjectInfoComponent } from './project-info/project-info.component';
+import { DescriptionComponent } from './description/description.component';
+import { NotesComponent } from './notes/notes.component';
+import { TasksComponent } from './tasks/tasks.component';
+import { MembersComponent } from './members/members.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'Projects', component: ProjectsComponent },
-    { path: 'ProjectInfo', component: ProjectInfoComponent },
+
+    { 
+        path: 'ProjectInfo/:id',
+        component: ProjectInfoComponent,
+        children: [
+            { path: 'Description', component: DescriptionComponent },
+            { path: 'Notes', component: NotesComponent },
+            { path: 'Tasks', component: TasksComponent },
+            { path: 'Members', component: MembersComponent },
+        ] 
+    },
+
     { path: 'CreateProject', component: CreateProjectComponent },
     { path: 'Invitations', component: InvitationsComponent },
     { path: 'Profile', component: ProfileComponent },
