@@ -4,18 +4,17 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';  
 
 @Component({
-  selector: 'app-invitations',
-  standalone: true,
-  imports: [DatePipe, CommonModule],
-  templateUrl: './invitations.component.html',
-  styleUrl: './invitations.component.css'
+    selector: 'app-invitations',
+    imports: [DatePipe, CommonModule],
+    templateUrl: './invitations.component.html',
+    styleUrl: './invitations.component.css'
 })
 export class InvitationsComponent {
 
   invitations: any = []
 
   setVirtuilData() {
-    for(let i=0; i<10; i++) {
+    for(let i=0; i<9; i++) {
       this.invitations.unshift({
         "id": i+1,
         "created_at": '2/17/2025',

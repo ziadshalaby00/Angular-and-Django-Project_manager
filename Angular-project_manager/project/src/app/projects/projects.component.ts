@@ -1,51 +1,31 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common'; // ✅ أضف
+import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { VirtualiService } from '../virtual-data.service';
+import { marked } from 'marked';
 
 @Component({
-  selector: 'app-projects',
-  standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, DatePipe],
-  templateUrl: './projects.component.html',
-  styleUrl: './projects.component.css'
+    selector: 'app-projects',
+    imports: [CommonModule, RouterModule, FormsModule, DatePipe],
+    templateUrl: './projects.component.html',
+    styleUrl: './projects.component.css'
 })
 export class ProjectsComponent {
 
   data: any = []
   $data: any = []
 
-  setVirtualData() {
-    for(let data=0; data < 9; data++) {
-      let des: any = ''
-      for(let i=0; i<8; i++) {
-        des += `
-      <h1 class="text-red-500">ziad shalaby</h1>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      Debitis odit autem est? Ipsam quod facilis cupiditate sunt quae officia
-      consequatur ipsa, adipisci harum laudantium cumque ipsum alias! Illum,
-      consectetur cum?`
-      }
-      let model: any = {
-        "id": data+1,
-        "title": "Project "+(data+1),
-        "description": `${des}`,
-        "author": {
-          "id": data+1,
-          "username": data%2 == 0 ? "ziad" : "ahmed",
-          "img": "https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?cs=srgb&dl=pexels-sulimansallehi-1704488.jpg&fm=jpg"
-        },
-        "created_at": "3/30/2025",
-        "status": data%2 ==0 ? "Ongoing" : "Done"
-      }
-      this.data.push(model);
-    }
-    this.$data =  this.data;
+
+  constructor(private myVirtualData: VirtualiService) {
+
   }
 
-  constructor() {
-    this.setVirtualData()
+  ngOnInit(): void {
+    this.data = this.myVirtualData.setVirtuali();
+    this.$data = this.data
+    console.log(this.$data)
   }
 
   filters = [
@@ -102,5 +82,7 @@ export class ProjectsComponent {
     this.PSetting = id
   }
 
-
+  getHtmlContent(markdownContent: string) {
+    return marked(markdownContent);
+  }
 }

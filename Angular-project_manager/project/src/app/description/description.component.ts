@@ -1,34 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { marked } from 'marked';
+import { VirtualiService } from '../virtual-data.service';
+import { ProjectService } from '../project-id.service';
 
 @Component({
-  selector: 'app-description',
-  standalone: true,
-  imports: [],
-  templateUrl: './description.component.html',
-  styleUrl: './description.component.css'
+    selector: 'app-description',
+    imports: [],
+    templateUrl: './description.component.html',
+    styleUrl: './description.component.css'
 })
 export class DescriptionComponent {
-  content: string = `    A full-stack Django and Angular website is a project management system. 
-    The platform includes registration, login, a homepage, 
-    and a profile page where users can edit their personal information. 
-    Once logged in, users are directed to a page displaying all their projects, 
-    along with an invitations page and a page for creating new projects.
+  data: any = []
+  markdownContent: string = ""
 
-    Users can click on any project to view its details, 
-    leading them to the project page, 
-    which consists of four main sections: Description, Tasks, Notes, Members
-    
-    Only the project owner can create and edit the description and tasks, 
-    while any team member can complete assigned tasks and submit notes.
-    
-    Technologies Used:
-        Frontend: Angular, Tailwind CSS, FontAwesome
-        Backend: Django REST Framework
-    
-    Concepts Implemented:
-        Pagination, Auth & Permission, REST API, Filtering, CRUD Operations`
+  @Input() project_id!: string;
+  constructor(
+    private route: ActivatedRoute, 
+    private router: Router, 
+    private myVirtualData: VirtualiService,
+    private projectService: ProjectService
+  ) {}
 
-    constructor() {
-      // this.content = this.setBold(this.content)
-    }
+  getHtmlContent() {
+    return marked(this.markdownContent);
+  }
+
+  ngOnInit(): void {
+    this.data = this.myVirtualData.setVirtuali();
+    
+    this.project_id = this.projectService.getProjectId();
+    let item: any = this.data.filter((p: any) => p.id == this.project_id)[0]
+    
+    this.markdownContent = item.description
+  }
 }

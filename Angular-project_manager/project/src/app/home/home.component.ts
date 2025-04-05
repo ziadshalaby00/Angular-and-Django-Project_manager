@@ -3,11 +3,10 @@ import { Router, RouterModule } from '@angular/router';
 import { AuthServiceService } from '../auth-service.service';
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [RouterModule],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+    selector: 'app-home',
+    imports: [RouterModule],
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.css'
 })
 export class HomeComponent {
 

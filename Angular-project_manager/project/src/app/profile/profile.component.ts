@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-profile',
-  standalone: true,
-  imports: [DatePipe],
-  templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css'
+    selector: 'app-profile',
+    imports: [DatePipe],
+    templateUrl: './profile.component.html',
+    styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
   PhotoSingup: any = null;

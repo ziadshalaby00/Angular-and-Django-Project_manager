@@ -13,6 +13,7 @@ import { DescriptionComponent } from './description/description.component';
 import { NotesComponent } from './notes/notes.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { MembersComponent } from './members/members.component';
+import { EditProjectComponent } from './edit-project/edit-project.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -30,6 +31,7 @@ export const routes: Routes = [
     },
 
     { path: 'CreateProject', component: CreateProjectComponent },
+    { path: 'EditProject/:id', component: EditProjectComponent },
     { path: 'Invitations', component: InvitationsComponent },
     { path: 'Profile', component: ProfileComponent },
     { path: 'Login', component: LoginComponent },

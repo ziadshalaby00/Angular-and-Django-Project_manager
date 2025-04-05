@@ -4,11 +4,10 @@ import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common'; 
 
 @Component({
-  selector: 'app-navbar',
-  standalone: true,
-  imports: [RouterModule, CommonModule],
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+    selector: 'app-navbar',
+    imports: [RouterModule, CommonModule],
+    templateUrl: './navbar.component.html',
+    styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
   constructor(private authService: AuthServiceService, private router: Router) {}
@@ -38,7 +37,7 @@ export class NavbarComponent {
     console.log(this.UserMenu)
   }
 
-  Notfications: number = 5
+  Notfications: number = 3
   resetNotfications() {
     this.Notfications = 0;
   }

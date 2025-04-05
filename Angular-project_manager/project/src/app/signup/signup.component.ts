@@ -4,11 +4,10 @@ import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-signup',
-  standalone: true,
-  imports: [RouterModule],
-  templateUrl: './signup.component.html',
-  styleUrl: './signup.component.css'
+    selector: 'app-signup',
+    imports: [RouterModule],
+    templateUrl: './signup.component.html',
+    styleUrl: './signup.component.css'
 })
 export class SignupComponent {
   constructor(private router: Router, private authService: AuthServiceService) {}

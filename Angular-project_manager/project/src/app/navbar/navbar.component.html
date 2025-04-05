@@ -46,14 +46,15 @@
                     text-gray-300 hover:bg-gray-700 hover:text-white">
                     Invitations
 
-                    <span [ngClass]="{'hidden': Notfications === 0}"
-                        class="whitespace-nowrap 
-                        absolute top-[-50%] right-0 translate-[50%]
-                        bg-red-600/85 p-2 rounded-full 
-                        text-center align-baseline text-xs font-bold leading-none
-                        text-gray-50">
-                        <i class="mr-1 fa-solid fa-bell"></i> {{Notfications}}
-                    </span>
+                    @if(Notfications) {
+                        <span class="whitespace-nowrap 
+                            absolute top-[-50%] right-0 translate-[50%]
+                            bg-red-600/85 p-2 rounded-full 
+                            text-center align-baseline text-xs font-bold leading-none
+                            text-gray-50">
+                            <i class="mr-1 fa-solid fa-bell"></i> {{Notfications}}
+                        </span>
+                    }
                   </a>
 
                   <a routerLink="/CreateProject" routerLinkActive="bg-gray-900 border-b-3 border-indigo-500"
@@ -96,7 +97,7 @@
                     class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 ring-1 shadow-lg ring-black/5 focus:outline-hidden" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                     <!-- Active: "bg-gray-100 outline-hidden", Not Active: "" -->
                     <p class="break-words px-4 py-2 text-sm font-medium text-gray-900">
-                        ZiadAhmedShalaby
+                        Ziad Shalaby 1
                     </p>
                     <hr class="px-4">
                     <a routerLink="/Profile" class="block px-4 py-2 hover:bg-gray-100
@@ -149,9 +150,22 @@
                     class="block rounded-md bg-gray-900
                      px-3 py-2 text-base font-medium text-white" aria-current="page">Your Projects</a>
 
-                    <a routerLink="/Invitations" routerLinkActive="bg-gray-900 border-b-3 border-indigo-500"
-                     class="block rounded-md px-3 py-2 text-base 
-                     font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Invitations</a>
+                    <a (click)="resetNotfications()"
+                     routerLink="/Invitations" routerLinkActive="bg-gray-900 border-b-3 border-indigo-500"
+                     class="block rounded-md px-3 py-2 text-base relative
+                     font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
+                        Invitations
+
+                        @if(Notfications) {
+                            <span class="whitespace-nowrap 
+                                absolute top-0 right-[60%] translate-y-[20%]
+                                bg-red-600/85 p-2 rounded-full 
+                                text-center align-baseline text-xs font-bold leading-none
+                                text-gray-50">
+                                <i class="mr-1 fa-solid fa-bell"></i> {{Notfications}}
+                            </span>
+                        }
+                    </a>
 
                     <a routerLink="/CreateProject" routerLinkActive="bg-gray-900 border-b-3 border-indigo-500"
                      class="block rounded-md px-3 py-2 text-base 

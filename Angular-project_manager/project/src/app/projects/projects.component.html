@@ -5,7 +5,9 @@
     <input type="search" name="search" [(ngModel)]="searchValue"
      id="search" placeholder="Search for a project by title..."
       class="block w-full rounded-md bg-white px-3 rounded-r-md
-      py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-500 sm:text-sm/6">
+      py-2 text-base text-gray-900 outline-1 -outline-offset-1 
+      outline-gray-300 placeholder:text-gray-400 focus:outline-2 
+      focus:-outline-offset-2 focus:outline-blue-500 sm:text-sm/6">
       
       <span (click)="startSearch()"
       class="absolute top-[50%] text-gray-50 rounded-r-md
@@ -16,7 +18,7 @@
       </span>
   </div>
 
-  <div class="flex items-center flex-wrap gap-4 mt-3 ">
+  <div class="grid grid-cols-[repeat(auto-fit,minmax(10rem,1fr))] gap-4 mt-3 ">
 
     @for(item of filters; track item.count) {
 
@@ -43,20 +45,21 @@
 
 
   @for(item of $data; track item.id) {
+
       <!-- Card -->
       <div class="bg-blue-400 shadow-lg mt-5 rounded-lg overflow-hidden border-2 border-blue-500">
         
           <!-- Card body -->
-          <div class="relative p-6 max-h-52 overflow-hidden bg-blue-100">
+          <div class="relative p-6 sm:max-h-52 max-h-58 overflow-hidden bg-slate-50">
         
             <!-- Title -->
               <div class="flex justify-between items-center gap-2 flex-wrap mb-2 ">
-                  <h5 class="text-xl font-bold tracking-wide text-neutral-800 dark:text-neutral-50">
+                  <h5 class="text-2xl font-bold tracking-wide text-neutral-900 dark:text-neutral-50">
                     {{item.title}}
                   </h5>
                   
                   <div class="flex items-center justify-center gap-3">
-                    @if(item.author.username === "ziad") {
+                    @if(item.author.id === 1) {
                       <div class="relative inline-block text-left">
                         <div>
                           <button type="button" (click)="togglePSetting(item.id)"
@@ -77,10 +80,10 @@
                             To: "transform opacity-0 scale-95"
                         -->
                         <div [ngClass]="{'hidden': PSetting != item.id}"
-                        class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white ring-1 shadow-lg ring-black/5 focus:outline-hidden" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                          class="absolute sm:right-0 right-[-11.2.5rem] z-10 mt-2 w-56 origin-top-right rounded-md bg-white ring-1 shadow-lg ring-black/5 focus:outline-hidden" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
                           <div class="py-1" role="none">
                             <!-- Active: "bg-gray-100 text-gray-900 outline-hidden", Not Active: "text-gray-700" -->
-                            <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100
+                            <a routerLink="/EditProject/{{item.id}}" class="block px-4 py-2 text-sm hover:bg-gray-100
                              text-gray-700" role="menuitem" tabindex="-1" id="menu-item-0">
                               Edit Project <i class="ml-1 fa-solid fa-pen-to-square"></i>
                             </a>
@@ -95,7 +98,7 @@
                     }
   
                   <span [ngClass]="{
-                      'text-green-700 ring-1 ring-green-600/20 bg-green-50': item.status === 'Done',
+                      'text-emerald-700 ring-1 border border-emerald-200 ring-emerald-600/20 bg-emerald-50': item.status === 'Done',
                       'text-yellow-800 ring-1 ring-yellow-600/20 bg-yellow-50': item.status !== 'Done'
                     }"
                     class="inline-flex items-center rounded-md px-2.5 py-1.5 text-base font-medium ring-inset">{{item.status}}</span>
@@ -104,16 +107,16 @@
               </div>
         
             <!-- Text -->
-            <pre class="mb-2 text-base text-neutral-700 dark:text-neutral-300">
-              {{item.description}}
-            </pre>
+            <pre [innerHTML]="getHtmlContent(item.description)"
+            class="mb-2 text-neutral-700 origin-top-left scale-75 dark:text-neutral-300"></pre>
         
             <!-- view project -->
             <div class="h-3/8 flex justify-center items-center
               bg-gradient-to-t from-gray-300 to-transparent
               absolute bottom-0 left-0 w-full">
   
-              <a routerLink="/ProjectInfo/{{item.id}}" class="text-white font-medium px-4 hover:bg-gray-500
+              <a routerLink="/ProjectInfo/{{item.id}}" 
+              class="text-white font-medium px-4 hover:bg-gray-500
               py-1 rounded-xl bg-gray-600">View Project</a>
   
             </div>
