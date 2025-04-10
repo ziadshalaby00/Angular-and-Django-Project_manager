@@ -52,6 +52,7 @@ class Task(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
     is_done  = models.BooleanField(default=False)
+    assign_to = models.ForeignKey(User, on_delete=models.CASCADE, related_name="task_DoneBy", null=True, blank=True)
     done_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="task_DoneBy", null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     
