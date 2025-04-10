@@ -75,7 +75,7 @@
           @if(it.author.id == 1) {
               <button (click)="openEdit(it.id)"
                   class="text-xl">
-                  <i class="fa-solid fa-pen-to-square
+                  <i class="fa-solid fa-pen-to-square origin-center
                   hover:text-gray-700 hover:cursor-pointer hover:scale-120
                     text-gray-200"></i>
               </button>
@@ -83,7 +83,7 @@
 
           @if(it.author.id == 1 || item.author.id == 1) {
               <button  class="text-xl">
-                  <i class="fa-solid fa-trash
+                  <i class="fa-solid fa-trash origin-center
                   hover:text-red-400 hover:cursor-pointer hover:scale-120
                     text-red-600"></i>
               </button>
@@ -94,7 +94,7 @@
                   'fa-square-caret-up': it.id == currentNote,
               }"
               (click)="openNote(it.id)"
-              class="hover:text-gray-700 hover:cursor-pointer text-2xl hover:scale-120">
+              class="hover:text-gray-700 origin-center hover:cursor-pointer text-2xl hover:scale-120">
               <i class="fa-solid"></i>
           </button>
         </div>

@@ -104,6 +104,8 @@ task Sub Title 2 test
 
           "project": i,
           "created_at": "4/15/2025",
+
+          "is_dpr": k == 3 ? true : false,
         })
       }
 

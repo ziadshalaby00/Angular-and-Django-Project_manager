@@ -29,11 +29,6 @@ export class TasksComponent {
         this.item = this.data.filter((p: any) => p.id == this.project_id)[0];
     }
 
-    currentTask: boolean = false
-    openTask() {
-
-    }
-
     doneTask(task_id: number, status: boolean) {
         let task: any = this.item.tasks.filter((t: any) => t.id === task_id)
         if(task) {
@@ -61,5 +56,35 @@ export class TasksComponent {
     selectPerson(person: any) {
         this.selectedPerson = person;
         this.isOpen = false;
+    }
+
+    currentTask: number = 0
+    openTask(id: number){
+        if(this.currentTask == id) {
+            this.currentTask = 0;
+            this.currentEdit = 0;
+            return
+        }
+        this.currentTask = id;
+        this.currentEdit = 0;
+    }
+
+    currentEdit: number = 0
+    openEdit(id: number){
+        if(this.currentEdit == id) {
+            this.currentTask = 0;
+            this.currentEdit = 0;
+            return
+        }
+        this.currentEdit = id;
+        this.currentTask = 0;
+    }
+
+    deprecateTask(task_id: number, dpr: boolean = false) {
+        let task: any = this.item.tasks.filter((t: any) => t.id === task_id)
+        if(task) {
+            task = task[0]
+            task.is_dpr = dpr
+        }
     }
 }
