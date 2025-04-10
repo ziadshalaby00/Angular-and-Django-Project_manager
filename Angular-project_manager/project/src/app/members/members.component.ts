@@ -41,4 +41,8 @@ export class MembersComponent {
     addMember() {
         this.resultAddMember = this.usersinv.filter((u: any) => u.username === this.memberSearch)[0]
     }
+
+    deleteMember(member_id: number) {
+        let c: boolean = confirm(`Are you sure you want to delete this Member? ${member_id}`)
+    }
 }

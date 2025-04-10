@@ -85,4 +85,8 @@ export class ProjectsComponent {
   getHtmlContent(markdownContent: string) {
     return marked(markdownContent);
   }
+
+  deleteProject(project_id: number) {
+    let c: boolean = confirm(`Are you sure you want to delete this project? ${project_id}`)
+  }
 }

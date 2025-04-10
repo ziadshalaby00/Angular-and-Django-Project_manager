@@ -55,4 +55,8 @@ export class NotesComponent {
     openAddNote() {
         this.addNote = !this.addNote
     }
+
+    deleteNote(note_id: number) {
+        let c: boolean = confirm(`Are you sure you want to delete this note? ${note_id}`)
+    }
 }

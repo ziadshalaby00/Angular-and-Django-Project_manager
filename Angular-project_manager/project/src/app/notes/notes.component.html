@@ -13,7 +13,7 @@
    
    <div [class.hidden]="!addNote" class="w-full">
        <form class="mb-8 mt-2 rounded-lg shadow-lg text-left
-           bg-gray-300 border text-gray-800 px-2 pb-4 border-stone-600">
+           bg-gray-100 border text-gray-800 px-2 pb-4 border-gray-300">
            <div class="sm:col-span-2">
                <label for="add-Note-Title" class="block text-sm/6 font-semibold text-gray-900">Title</label>
                <div class="mt-2.5">
@@ -44,7 +44,7 @@
 
   <!-- Card -->
   <div class="mt-8 p-4 block rounded-lg shadow-lg text-left min-w-72
-    bg-gray-500 border text-gray-200 border-gray-800">
+    bg-gray-500 border text-gray-100 border-gray-800">
   
       <div class="mb-2 flex sm:flex-row flex-col sm:items-center gap-1
           justify-between items-start gap-x-6">
@@ -82,7 +82,8 @@
           }
 
           @if(it.author.id == 1 || item.author.id == 1) {
-              <button  class="text-xl">
+              <button (click)="deleteNote(it.id)"
+                  class="text-xl">
                   <i class="fa-solid fa-trash origin-center
                   hover:text-red-400 hover:cursor-pointer hover:scale-120
                     text-red-600"></i>
@@ -107,7 +108,7 @@
   <!-- Card Edit -->
   <form [class.hidden]="it.id != currentEdit"
       class="mb-8 mt-2 rounded-lg shadow-lg text-left
-      bg-gray-300 border text-gray-800 px-2 pb-4 border-stone-600"
+      bg-gray-100 border text-gray-800 px-2 pb-4 border-gray-300"
       >
       <div class="sm:col-span-2">
           <label for="Note-Title" class="block text-sm/6 font-semibold text-gray-900">Title</label>
@@ -136,7 +137,7 @@
   <!-- Card description -->
   <div [class.hidden]="it.id != currentNote"
       class="hidden mb-8 mt-2 rounded-lg shadow-lg text-left
-      bg-gray-300 border text-gray-800 px-2 border-stone-600">
+      bg-gray-100 border text-gray-800 px-2 border-gray-300">
   
       <!-- Card body -->
       <pre class="p-4">{{it.description}}</pre>

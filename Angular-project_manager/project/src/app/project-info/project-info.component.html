@@ -89,10 +89,11 @@ rounded-r-lg shadow-lg text-left scrollbar-blue">
                         Edit Project <i class="ml-1 fa-solid fa-pen-to-square"></i>
                       </a>
 
-                      <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100
+                      <button (click)="deleteProject(item.id)"
+                        class="block w-full text-left hover:cursor-pointer px-4 py-2 text-sm hover:bg-gray-100
                         text-red-600" role="menuitem" tabindex="-1" id="menu-item-1">
                         Delete Project <i class="ml-1 fa-solid fa-trash"></i>
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </div>

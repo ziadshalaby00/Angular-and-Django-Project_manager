@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthServiceService {
-  private userLoggedIn = new BehaviorSubject<boolean>(true); // الحالة الافتراضية: غير مسجل
+  private userLoggedIn = new BehaviorSubject<boolean>(false); // الحالة الافتراضية: غير مسجل
   userLoggedIn$ = this.userLoggedIn.asObservable(); // جعلها قابلة للاشتراك من قبل المكونات
 
   constructor() {}

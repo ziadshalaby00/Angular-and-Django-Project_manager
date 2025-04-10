@@ -39,11 +39,13 @@ export class InvitationsComponent {
   }
 
   setReject(id: number) {
-    for(let item of this.invitations) {
-      if(item.id === id) {
-        item.status = 'rejected'
+    let c: boolean = confirm(`Are you sure you want to reject this invite?`)
+    if(c) {
+      for(let item of this.invitations) {
+        if(item.id === id) {
+          item.status = 'rejected'
+        }
       }
     }
   }
-
 }

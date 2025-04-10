@@ -41,7 +41,7 @@
           @if(!resultAddMember.invited) {
             <button type="submit" 
                   class="block rounded-md w-26 bg-teal-500 px-3.5 py-2.5 
-                  text-center text-sm font-semibold text-white shadow-xs 
+                  text-center text-sm font-semibold text-white shadow-xs
                   hover:bg-teal-600 focus-visible:outline hover:cursor-pointer
                   -2 focus-visible:outline-offset-2 focus-visible:outline-teal-600">
                   Invite
@@ -84,11 +84,12 @@
             </p>
 
             @if(item.author.id === 1) {
-              <p class="text-md">
-                <i class="fa-solid fa-trash
+              <button (click)="deleteMember(it.id)"
+                class="text-md">
+                <i class="fa-solid fa-trash origin-center
                 hover:text-red-400 hover:cursor-pointer hover:scale-120
                  text-red-600"></i>
-              </p>
+              </button>
             }
           </div>
 

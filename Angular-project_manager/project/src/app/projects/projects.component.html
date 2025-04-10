@@ -47,7 +47,7 @@
   @for(item of $data; track item.id) {
 
       <!-- Card -->
-      <div class="bg-blue-400 shadow-lg mt-5 rounded-lg overflow-hidden border-2 border-blue-500">
+      <div class="bg-blue-400 shadow-lg mt-5 rounded overflow-hidden border-2 border-blue-500">
         
           <!-- Card body -->
           <div class="relative p-6 sm:max-h-52 max-h-58 overflow-hidden bg-slate-50">
@@ -88,10 +88,11 @@
                               Edit Project <i class="ml-1 fa-solid fa-pen-to-square"></i>
                             </a>
 
-                            <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100
+                            <button (click)="deleteProject(item.id)"
+                             class="block w-full text-left hover:cursor-pointer px-4 py-2 text-sm hover:bg-gray-100
                              text-red-600" role="menuitem" tabindex="-1" id="menu-item-1">
                              Delete Project <i class="ml-1 fa-solid fa-trash"></i>
-                            </a>
+                            </button>
                           </div>
                         </div>
                       </div>

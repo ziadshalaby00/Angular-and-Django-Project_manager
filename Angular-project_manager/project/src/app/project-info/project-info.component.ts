@@ -26,7 +26,7 @@ export class ProjectInfoComponent {
 
   ngOnInit(): void {
     this.data = this.myVirtualData.setVirtuali();
-    this.router.navigate(['Tasks'], { relativeTo: this.route });
+    this.router.navigate(['Description'], { relativeTo: this.route });
     
     let project_id = this.route.snapshot.paramMap.get('id')
     this.projectService.setProjectId(project_id);
@@ -52,4 +52,7 @@ export class ProjectInfoComponent {
     this.item.status = status === "Done" ? "Ongoing" : "Done"
   }
 
+  deleteProject(project_id: number) {
+    let c: boolean = confirm(`Are you sure you want to delete this project? ${project_id}`)
+  }
 }

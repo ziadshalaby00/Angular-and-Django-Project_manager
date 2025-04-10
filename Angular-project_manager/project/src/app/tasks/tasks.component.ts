@@ -87,4 +87,8 @@ export class TasksComponent {
             task.is_dpr = dpr
         }
     }
+
+    deleteTask(task_id: number) {
+        let c: boolean = confirm(`Are you sure you want to delete this task? ${task_id}`)
+    }
 }

@@ -27,4 +27,8 @@ export class ProfileComponent {
   opendEditForm() {
     this.EditForm = !this.EditForm
   }
+
+  deleteAccount(account_id: number) {
+    let c: boolean = confirm(`Are you sure you want to delete your account?`)
+  }
 }
